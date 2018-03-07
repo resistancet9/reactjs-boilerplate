@@ -1,0 +1,39 @@
+#reactjs 
+npm install --save react react-dom
+
+#setup webpack
+npm install webpack webpack-cli
+
+#setup babel
+npm install --save-dev babel-loader babel-core
+
+#setup babel and react
+npm install babel-preset-env  babel-preset-react --save-dev
+
+#create file .babelrc and add following
+
+{
+  "presets": ["env", "react"]
+}
+
+#create file webpack.config.js and add following
+
+'use strict';
+
+var path = require('path');
+var webpack = require('webpack');
+
+module.exports = {
+  entry: [
+    path.join(__dirname, 'index.js')
+  ],
+  output: {
+    path: path.join(__dirname, '/dist/'),
+    filename: 'bundle.js',
+  },
+  module: {
+  rules: [
+    { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
+  ]
+}
+};
